@@ -39,7 +39,7 @@ class RootViewController: UITableViewController, NSFetchedResultsControllerDeleg
             CoreDataStackManager.sharedInstance().saveContext()
             self.pushBoardViewController(board)
         }
-        userInput("Title", handler: handler)
+        userInput("Enter the new board's title", handler: handler)
     }
     
     func pushBoardViewController(board: Board) {

@@ -31,33 +31,22 @@ extension UIViewController {
     
     func userInput(title: String, handler: ((String) -> Void)?) {
         
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .Alert)
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {(_) in
             if let handler = handler {
                 handler(alert.textFields![0].text!)
             }
         }))
+
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: {(_) in
             if let handler = handler {
                 handler("")
             }
         }))
         
-        alert.addTextFieldWithConfigurationHandler({(textField) in
-            textField.placeholder = title
-        })
+        alert.addTextFieldWithConfigurationHandler(nil)
         
         presentViewController(alert, animated: true, completion: nil)
     }
 }
-
-/*
-    var alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
-    alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-    alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-        textField.placeholder = "Enter text:"
-        textField.secureTextEntry = true
-    })
-    self.presentViewController(alert, animated: true, completion: nil)
-*/
