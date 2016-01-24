@@ -24,20 +24,11 @@ let LON_MAX = 180.0
 
 class FlickrClient {
     
-    func searchPhotosBy(latitude: Double, longitude: Double, completionHandler: (album: [[String:AnyObject]], error: String) -> Void) {
-        guard validLatitude(latitude) else {
-            completionHandler(album: [], error: "Latitude Invalid.\nIt should be [-90, 90].")
-            return
-        }
-        guard validLongitude(longitude) else {
-            completionHandler(album: [], error: "Longitude Invalid.\nIt should be [-180, 180].")
-            return
-        }
-        
+    func searchPhotosBy(text: String, completionHandler: (album: [[String:AnyObject]], error: String) -> Void) {
         let methodArguments = [
             "method": METHOD_NAME,
             "api_key": API_KEY,
-            "bbox": createBoundingBoxString(latitude, longitude: longitude),
+            "text": text,
             "safe_search": SAFE_SEARCH,
             "extras": EXTRAS,
             "format": DATA_FORMAT,
@@ -87,13 +78,6 @@ class FlickrClient {
     private func validLongitude(longitude: Double) -> Bool {
         return longitude >= LON_MIN && longitude <= LON_MAX
     }
-    
-//    func getLatLonString() -> String {
-//        let latitude = (self.latitudeTextField.text! as NSString).doubleValue
-//        let longitude = (self.longitudeTextField.text! as NSString).doubleValue
-//        
-//        return "(\(latitude), \(longitude))"
-//    }
     
     // Helper : Flickr API
     
