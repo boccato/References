@@ -1,6 +1,6 @@
 //
 //  Flickr.swift
-//  VirtualTourist
+//  References
 //
 //  Created by Ricardo Boccato Alves on 11/21/15.
 //  Copyright © 2015 Ricardo Boccato Alves. All rights reserved.

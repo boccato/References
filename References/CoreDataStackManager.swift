@@ -1,6 +1,6 @@
 //
 //  CoreDataStackManager.swift
-//  FavoriteActors
+//  References
 //
 //  Created by Jason on 3/10/15.
 //  Copyright (c) 2015 Udacity. All rights reserved.
@@ -46,7 +46,7 @@ class CoreDataStackManager {
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
 
-        let modelURL = NSBundle.mainBundle().URLForResource("VirtualTourist", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("References", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     
