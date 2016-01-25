@@ -60,6 +60,7 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
         collectionView.reloadData()
         FlickrClient.sharedInstance().searchPhotosBy(searchTextField!.text!) { (album, error) in
             guard error == "" else {
+                self.showAlert("Error", message: "Could not load images from Flickr.")
                 return
             }
             for photo in album {
