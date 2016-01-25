@@ -26,13 +26,17 @@ class BoardViewController: UIViewController, UIPageViewControllerDataSource {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        loadPageViewController()
+    }
+    
     // Buttons
     
     func addPhotos() {
         let ctrl = storyboard!.instantiateViewControllerWithIdentifier("AddPhotosViewController") as! AddPhotosViewController
         ctrl.board = board
         presentViewController(ctrl, animated: true, completion: nil)
-        createPageViewController()
     }
     
     // Helper methods
@@ -41,14 +45,11 @@ class BoardViewController: UIViewController, UIPageViewControllerDataSource {
         let ctrl = storyboard!.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
         
         ctrl.dataSource = self
-        
-        if board!.files.count > 0 {
-            let firstController = getItemController(0)!
-            let startingViewControllers: [UIViewController] = [firstController]
-            ctrl.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
-        }
-        
+
         pageViewController = ctrl
+        
+        loadPageViewController()
+        
         addChildViewController(pageViewController!)
         self.view.addSubview(pageViewController!.view)
         pageViewController!.didMoveToParentViewController(self)
@@ -64,6 +65,14 @@ class BoardViewController: UIViewController, UIPageViewControllerDataSource {
         }
         
         return nil
+    }
+    
+    private func loadPageViewController() {
+        if board!.files.count > 0 {
+            let firstController = getItemController(0)!
+            let startingViewControllers: [UIViewController] = [firstController]
+            pageViewController!.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
+        }
     }
     
     private func setupPageControl() {
