@@ -54,6 +54,8 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     @IBAction func search(sender: UIButton) {
+        dismissAnyVisibleKeyboards()
+
         photos = [Photo]()
         collectionView.reloadData()
         FlickrClient.sharedInstance().searchPhotosBy(searchTextField!.text!) { (album, error) in
@@ -108,6 +110,12 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
             cell.backgroundView?.alpha = 0.5
         } else {
             cell.backgroundView?.alpha = 1.0
+        }
+    }
+    
+    func dismissAnyVisibleKeyboards() {
+        if searchTextField.isFirstResponder() {
+            self.view.endEditing(true)
         }
     }
 }
