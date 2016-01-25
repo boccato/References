@@ -35,6 +35,9 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
         let width = floor((self.collectionView.frame.size.width-8)/3)
         layout.itemSize = CGSize(width: width, height: width)
         collectionView.collectionViewLayout = layout
+        
+        // Good first guess for the search term :)
+        searchTextField.text = board!.title
     }
     
     // Buttons
