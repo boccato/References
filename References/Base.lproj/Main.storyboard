@@ -103,17 +103,22 @@
                                     <action selector="done:" destination="nlh-ZM-Dhz" eventType="touchUpInside" id="TIX-Uw-pyf"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ijv-bW-She">
+                                <rect key="frame" x="538" y="48" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0fM-eQ-GOr" firstAttribute="top" secondItem="UR1-z2-41o" secondAttribute="bottom" constant="4" id="37i-G8-hX8"/>
                             <constraint firstItem="ZY2-L8-Knm" firstAttribute="top" secondItem="HlM-Mj-vdA" secondAttribute="bottom" constant="20" id="5F9-Ej-5dW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ijv-bW-She" secondAttribute="trailing" constant="22" id="6ek-yG-ni1"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ZY2-L8-Knm" secondAttribute="leading" id="6vs-ZQ-8Zf"/>
                             <constraint firstItem="BxY-4T-uQ6" firstAttribute="top" secondItem="0fM-eQ-GOr" secondAttribute="bottom" id="Ebj-uX-8y7"/>
                             <constraint firstItem="UR1-z2-41o" firstAttribute="leading" secondItem="Eq8-ZN-ceA" secondAttribute="leadingMargin" constant="-20" id="KZ6-6a-KkM"/>
                             <constraint firstItem="Itv-zx-jnz" firstAttribute="leading" secondItem="ZY2-L8-Knm" secondAttribute="trailing" constant="8" id="NCM-aO-wba"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UR1-z2-41o" secondAttribute="trailing" constant="-20" id="VHd-ie-ivD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Itv-zx-jnz" secondAttribute="trailing" id="bLW-Np-zkb"/>
+                            <constraint firstItem="Ijv-bW-She" firstAttribute="top" secondItem="HlM-Mj-vdA" secondAttribute="bottom" constant="28" id="bPl-cm-kXb"/>
                             <constraint firstItem="Itv-zx-jnz" firstAttribute="top" secondItem="HlM-Mj-vdA" secondAttribute="bottom" constant="20" id="dvl-a2-z7q"/>
                             <constraint firstItem="UR1-z2-41o" firstAttribute="leading" secondItem="0fM-eQ-GOr" secondAttribute="trailing" constant="-322" id="fQC-oY-uP6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0fM-eQ-GOr" secondAttribute="trailing" constant="-20" id="nNh-NU-zg3"/>
@@ -130,7 +135,9 @@
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ijv-bW-She" id="MTV-tE-JnW"/>
                         <outlet property="collectionView" destination="UR1-z2-41o" id="7y3-F8-ULo"/>
+                        <outlet property="searchButton" destination="Itv-zx-jnz" id="gXC-CJ-8W5"/>
                         <outlet property="searchDisplayController" destination="5OA-gp-9e2" id="a6l-ev-RWh"/>
                         <outlet property="searchTextField" destination="ZY2-L8-Knm" id="aJL-Ig-R9x"/>
                     </connections>

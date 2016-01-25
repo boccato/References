@@ -14,7 +14,9 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
     private var photos = [Photo]()
     private var selected = [Bool]()
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     
     var board: Board?
@@ -55,9 +57,13 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
     
     @IBAction func search(sender: UIButton) {
         dismissAnyVisibleKeyboards()
-
+        
         photos = [Photo]()
         collectionView.reloadData()
+        searchButton.hidden = true
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
         FlickrClient.sharedInstance().searchPhotosBy(searchTextField!.text!) { (album, error) in
             guard error == "" else {
                 self.showAlert("Error", message: "Could not load images from Flickr.")
@@ -68,6 +74,9 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
                 self.selected.append(false)
             }
             dispatch_async(dispatch_get_main_queue()) {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+                self.searchButton.hidden = false
                 self.collectionView.reloadData()
             }
         }
