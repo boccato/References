@@ -103,7 +103,7 @@
                                     <action selector="done:" destination="nlh-ZM-Dhz" eventType="touchUpInside" id="TIX-Uw-pyf"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ijv-bW-She">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ijv-bW-She">
                                 <rect key="frame" x="538" y="48" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
