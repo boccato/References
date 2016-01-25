@@ -1,22 +1,17 @@
 //
-//  Board.swift
+//  File.swift
 //  References
 //
-//  Created by Ricardo Boccato Alves on 1/22/16.
+//  Created by Ricardo Boccato Alves on 1/24/16.
 //  Copyright © 2016 Ricardo Boccato Alves. All rights reserved.
 //
 
 import CoreData
 
-class Board : NSManagedObject {
+class File : NSManagedObject {
     
-    struct Keys {
-        static let Title = "title"
-        static let Album = "files"
-    }
-    
-    @NSManaged var title: String
-    @NSManaged var files: [File]
+    @NSManaged var id: String
+    @NSManaged var board: Board
     
     // Swift doesn't automatically inherits init methods, we must be explicit.
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -25,14 +20,16 @@ class Board : NSManagedObject {
     
     // Insert the new Board into a Core Data Managed Object Context and
     // initialize its properties.
-    init(title: String, context: NSManagedObjectContext) {
+    init(id: String, board: Board, context: NSManagedObjectContext) {
         
-        let entity =  NSEntityDescription.entityForName("Board", inManagedObjectContext: context)!
+        let entity =  NSEntityDescription.entityForName("File", inManagedObjectContext: context)!
         
         // This inherited init method does the work of "inserting" our object
         // into the context that was passed in as a parameter.
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
-        self.title = title
+        self.id = id
+        self.board = board
     }
+    
 }

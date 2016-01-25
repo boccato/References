@@ -28,21 +28,23 @@ class BoardViewController: UIViewController {
     
     func addPhotos() {
         let ctrl = storyboard!.instantiateViewControllerWithIdentifier("AddPhotosViewController") as! AddPhotosViewController
+        ctrl.board = board
         presentViewController(ctrl, animated: true, completion: nil)
+        createPageViewController()
     }
     
     private func createPageViewController() {
         
         let ctrl = storyboard!.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
         
-        contentImageView.image = UIImage(named: "not-found")
+//        contentImageView.image = UIImage(named: "not-found")
 //        pageController.dataSource = self
-//        
-//        if contentImages.count > 0 {
-//            let firstController = getItemController(0)!
-//            let startingViewControllers: NSArray = [firstController]
-//            pageController.setViewControllers(startingViewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-//        }
+//
+        if board!.files.count > 0 {
+            let firstController = getItemController(0)!
+            let startingViewControllers: NSArray = [firstController]
+            pageController.setViewControllers(startingViewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        }
 //
         pageViewController = ctrl
         addChildViewController(pageViewController!)
@@ -57,8 +59,21 @@ class BoardViewController: UIViewController {
         appearance.backgroundColor = UIColor.darkGrayColor()
     }
     
+    // Helper methods
+    
+    private func getItemController(itemIndex: Int) -> PageItemController? {
+        
+        if itemIndex < board!.files.count {
+            let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier("ItemController") as! PageItemController
+            pageItemController.itemIndex = itemIndex
+            pageItemController.imageName = contentImages[itemIndex]
+            return pageItemController
+        }
+        
+        return nil
+    }
 
-//    
+//
 //    // UICollectionViewController
 //    
 //    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

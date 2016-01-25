@@ -40,6 +40,23 @@ class Photo {
         }
     }
     
+    private func createPathWithId() -> String {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+        return url.URLByAppendingPathComponent(id).path!
+    }
+    
+    func saveImage() -> String? {
+        if let image = self.image {
+            if let data = UIImageJPEGRepresentation(image, 1.0) {
+                let path = createPathWithId()
+                data.writeToFile(path, atomically: true)
+                return path
+            }
+        }
+        return nil
+    }
+    
     func withLoadedImage(completionHandler: (image: UIImage?) -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             dispatch_group_wait(self.group, DISPATCH_TIME_FOREVER)

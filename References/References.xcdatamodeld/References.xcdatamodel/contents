@@ -2,8 +2,14 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Board" representedClassName=".Board" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="board" inverseEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="File" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Board" inverseName="files" inverseEntity="Board" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Board" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="Board" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="File" positionX="-54" positionY="0" width="128" height="75"/>
     </elements>
 </model>

@@ -61,7 +61,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UR1-z2-41o">
-                                <rect key="frame" x="0.0" y="90" width="600" height="461"/>
+                                <rect key="frame" x="0.0" y="90" width="600" height="427"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h8W-Kc-hSf">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -96,19 +96,37 @@
                                     <outlet property="delegate" destination="nlh-ZM-Dhz" id="dYi-qK-5Ne"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-eQ-GOr">
+                                <rect key="frame" x="0.0" y="521" width="600" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="done:" destination="nlh-ZM-Dhz" eventType="touchUpInside" id="TIX-Uw-pyf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0fM-eQ-GOr" firstAttribute="top" secondItem="UR1-z2-41o" secondAttribute="bottom" constant="4" id="37i-G8-hX8"/>
                             <constraint firstItem="ZY2-L8-Knm" firstAttribute="top" secondItem="HlM-Mj-vdA" secondAttribute="bottom" constant="20" id="5F9-Ej-5dW"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ZY2-L8-Knm" secondAttribute="leading" id="6vs-ZQ-8Zf"/>
+                            <constraint firstItem="BxY-4T-uQ6" firstAttribute="top" secondItem="0fM-eQ-GOr" secondAttribute="bottom" id="Ebj-uX-8y7"/>
                             <constraint firstItem="UR1-z2-41o" firstAttribute="leading" secondItem="Eq8-ZN-ceA" secondAttribute="leadingMargin" constant="-20" id="KZ6-6a-KkM"/>
                             <constraint firstItem="Itv-zx-jnz" firstAttribute="leading" secondItem="ZY2-L8-Knm" secondAttribute="trailing" constant="8" id="NCM-aO-wba"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UR1-z2-41o" secondAttribute="trailing" constant="-20" id="VHd-ie-ivD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Itv-zx-jnz" secondAttribute="trailing" id="bLW-Np-zkb"/>
                             <constraint firstItem="Itv-zx-jnz" firstAttribute="top" secondItem="HlM-Mj-vdA" secondAttribute="bottom" constant="20" id="dvl-a2-z7q"/>
+                            <constraint firstItem="UR1-z2-41o" firstAttribute="leading" secondItem="0fM-eQ-GOr" secondAttribute="trailing" constant="-322" id="fQC-oY-uP6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0fM-eQ-GOr" secondAttribute="trailing" constant="-20" id="nNh-NU-zg3"/>
                             <constraint firstItem="UR1-z2-41o" firstAttribute="top" secondItem="ZY2-L8-Knm" secondAttribute="bottom" constant="20" id="reC-Pk-Rg7"/>
+                            <constraint firstItem="0fM-eQ-GOr" firstAttribute="leading" secondItem="Eq8-ZN-ceA" secondAttribute="leadingMargin" constant="-20" id="sKI-Fs-1Y0"/>
                             <constraint firstItem="BxY-4T-uQ6" firstAttribute="top" secondItem="UR1-z2-41o" secondAttribute="bottom" id="udG-TW-mdg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fQC-oY-uP6"/>
+                                <exclude reference="udG-TW-mdg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

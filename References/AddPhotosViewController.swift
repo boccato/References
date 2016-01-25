@@ -6,15 +6,18 @@
 //  Copyright © 2016 Ricardo Boccato Alves. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    private var images = [UIImage]()
     private var photos = [Photo]()
+    private var selected = [Bool]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
+    
+    var board: Board?
     
     // UIViewController
     
@@ -32,6 +35,24 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
         collectionView.collectionViewLayout = layout
     }
     
+    // Buttons
+    
+    @IBAction func done(sender: UIButton) {
+        var needSaving = false
+        for i in photos.indices {
+            if selected[i] {
+                let photo = photos[i]
+                photo.saveImage()
+                let _ = File(id: photo.id, board: self.board!, context: CoreDataStackManager.sharedInstance().managedObjectContext)
+                needSaving = true
+            }
+        }
+        if needSaving {
+            CoreDataStackManager.sharedInstance().saveContext()
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func search(sender: UIButton) {
         photos = [Photo]()
         collectionView.reloadData()
@@ -41,6 +62,7 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
             }
             for photo in album {
                 self.photos.append(Photo(dictionary: photo))
+                self.selected.append(false)
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.collectionView.reloadData()
@@ -54,7 +76,7 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath)
         let photo = photos[indexPath.item]
         (cell as! UIPhotoCell).photo = photo
-//        configureCell(cell as! UIPhotoCell, atIndexPath: indexPath)
+        configureCell(cell as! UIPhotoCell, atIndexPath: indexPath)
         return cell
     }
     
@@ -64,23 +86,28 @@ class AddPhotosViewController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! UIPhotoCell
-//        
-//        // Whenever a cell is tapped we will toggle its presence in the selectedIndexes array
-//        if let index = selectedIndexes.indexOf(indexPath) {
-//            selectedIndexes.removeAtIndex(index)
-//        } else {
-//            selectedIndexes.append(indexPath)
-//        }
-//        
-//        // Then reconfigure the cell
-//        configureCell(cell, atIndexPath: indexPath)
-//        
-//        // And update the buttom button
-//        updateBottomButton()
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! UIPhotoCell
+
+        // Whenever a cell is tapped we will toggle its presence in the selectedIndexes array.
+        selected[indexPath.item] = !selected[indexPath.item]
+
+        // Then reconfigure the cell.
+        configureCell(cell, atIndexPath: indexPath)
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    // Helper methods
+    
+    private func configureCell(cell: UIPhotoCell, atIndexPath indexPath: NSIndexPath) {
+
+        // If the cell is "selected" it's color panel is grayed out.
+        if selected[indexPath.item] {
+            cell.backgroundView?.alpha = 0.5
+        } else {
+            cell.backgroundView?.alpha = 1.0
+        }
     }
 }
