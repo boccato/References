@@ -16,7 +16,7 @@ class Board : NSManagedObject {
     }
     
     @NSManaged var title: String
-    @NSManaged var files: [File]
+    @NSManaged var files: NSSet
     
     // Swift doesn't automatically inherits init methods, we must be explicit.
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -34,5 +34,9 @@ class Board : NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
         self.title = title
+    }
+    
+    func filesAsArray() -> [File] {
+        return files.allObjects as! [File]
     }
 }

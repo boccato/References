@@ -32,4 +32,9 @@ class File : NSManagedObject {
         self.board = board
     }
     
+    func createPathWithId() -> String {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+        return url.URLByAppendingPathComponent(id).path!
+    }
 }

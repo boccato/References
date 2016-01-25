@@ -4,7 +4,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="board" inverseEntity="File" syncable="YES"/>
     </entity>
-    <entity name="File" syncable="YES">
+    <entity name="File" representedClassName=".File" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Board" inverseName="files" inverseEntity="Board" syncable="YES"/>
     </entity>
